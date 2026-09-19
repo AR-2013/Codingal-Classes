@@ -33,3 +33,21 @@ def apply(img, t):
     if t == "CARTOON":
         g = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         e = cv2.adaptiveThreshold(cv2.medianBlur(g, 7), 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 9, 2)
+        c = cv2.bilateralFilter(img, 9, 75, 75)
+        return cv2.bitwise_and(c, c, mask=e)
+    return img
+
+cap = cv2.VideoCapture(0)
+if not cap.isOpened(): print("Error: Could not access the webcam."); exit()
+cv2.namedWindow(MAIN, cv2.WINDOW_NORMAL)
+
+while True:
+    if paused:
+        cv2.imshow(MAIN, freeze)
+        k = cv2.waitKey(50) & 0xFF
+        if k == ord("q"): break
+        if k == 27:
+            paused = False; pinch_on = False
+            try: cv2.destroyWindow(POP)
+            exceptt: pass
+            continue
