@@ -2,8 +2,7 @@ import requests
 import random
 import html
 
-url = "https://opentdb.com/api.php?amount=5&type=multiple"
-
+url = "https://www.codingal.com/student/dashboard/projects/12764815/"
 response = requests.get(url)
 data = response.json()
 
